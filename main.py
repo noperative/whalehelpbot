@@ -25,14 +25,14 @@ def username_mentions():
     for u in unreads:
         for m in mentions:
             if m == u:
-                print(m)
+                print "mentioned by: " + m.id " for " + m.comment.submission.id
                 u.mark_as_read()
-                #build_reply(m.post), i have no idea what the parameter for the post is
+                build_reply(m.comment.submission)
 
 
 
 def scan_submission(submission):
-    print "scanning submission: " + submission.title + submission.id
+    print "scanning submission: " + submission.title + " " + submission.id
     if '[help]' in post.title.lower():
         if any(word in post.selftext.lower for word in models.general_words):
             build_reply(post)  

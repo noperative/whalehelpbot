@@ -27,7 +27,7 @@ def username_mentions():
             if m == u:
                 print "mentioned by: " + m.id " for " + m.comment.submission.id
                 u.mark_as_read()
-                build_reply(m.comment.submission)
+                build_comment(m.comment.submission)
 
 
 

@@ -10,12 +10,13 @@ r_instance = None
 already_replied = []
 
 def username_mentions():
-    mentions = r_instance.get_mentions()
-    unreads = r_instance.get_unread()
+    mentions = r_instance.get_mentions(limit=10)
+    unreads = r_instance.get_unread(limit=None)
     for u in unreads:
         for m in mentions:
             if m == u:
                 print(m)
+                msg.mark_as_read()
                 #build_reply(m.post), i have no idea what the parameter for the post is
 
 

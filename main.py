@@ -41,7 +41,7 @@ def build_comment(submission):
     if submission.id not in already_commented:
         already_commented.append(post.id)
 	with open("commented.txt", "a") as file:
-	   file.write('{0!s}\n'.format(submission.id)
+	   file.write('{0!s}\n'.format(submission.id))
     	comment = "taigei"
     	submission.add_comment(comment)
 

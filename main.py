@@ -12,8 +12,8 @@ already_replied = []
 def username_mentions():
     mentions = r_instance.get_mentions()
     unreads = r_instance.get_unread()
-    for m in mentions:
-        for u in unreads:
+    for u in unreads:
+        for m in mentions:
             if m == u:
                 print(m)
                 #build_reply(m.post), i have no idea what the parameter for the post is

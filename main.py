@@ -28,13 +28,13 @@ def username_mentions():
     for u in unreads:
         for m in mentions:
             if m == u:
-                print "mentioned by: " + m.id + " for " + m.comment.submission.id
+                print("mentioned by: " + m.id + " for " + m.comment.submission.id)
                 u.mark_as_read()
                 build_comment(m.comment.submission)
 
 
 def scan_submission(submission):
-    print "scanning submission: " + submission.title + " " + submission.id
+    print("scanning submission: " + submission.title + " " + submission.id)
     if '[help]' in submission.title.lower():
         if any(word in submission.selftext.lower for word in properties.general_words):
             build_comment(submission)
@@ -52,18 +52,18 @@ def build_comment(submission):
 def main():
     global r_instance
     global already_commented
-    print "Hello World!" 
+    print("Hello World!")
     while True:
         try:
-            print "trying to login..."
-            r_instance = praw.Reddit(models.user_agent)
+            print("trying to login...")
+            r_instance = praw.Reddit(properties.user_agent)
             oauth_instance = OAuth2Util.OAuth2Util(r_instance)
             oauth_instance.refresh(force=True)
             break
         except Exception as e:
-            print "error, retrying in 30 seconds"
+            print("error, retrying in 30 seconds")
             sleep(30)
-    print "successful! connecting to subreddit: " + properties.subreddit
+    print("successful! connecting to subreddit: " + properties.subreddit)
     sub_r = r_instance.get_subreddit(properties.subreddit)
     already_commented = load_already_commented()
 

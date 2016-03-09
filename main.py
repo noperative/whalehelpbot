@@ -16,7 +16,7 @@ def username_mentions():
         for m in mentions:
             if m == u:
                 print(m)
-                msg.mark_as_read()
+                u.mark_as_read()
                 #build_reply(m.post), i have no idea what the parameter for the post is
 
 

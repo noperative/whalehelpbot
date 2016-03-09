@@ -10,7 +10,15 @@ r_instance = None
 already_replied = []
 
 def username_mentions():
-    build_reply()
+    mentions = r_instance.get_mentions()
+    unreads = r_instance.get_unread()
+    for m in mentions:
+        for u in unreads:
+            if m == u:
+                print(m)
+                #build_reply(m.post), i have no idea what the parameter for the post is
+
+
 
 def scan_post(post):
     print "scanning post: " + post.title

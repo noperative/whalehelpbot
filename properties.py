@@ -1,7 +1,3 @@
-import ConfigParser
-import os
-import sys
-
 subreddit = 'taigeilove'
 user_agent = 'Python:whalehelpbot:v1.0 (by /u/Noperative)'
 

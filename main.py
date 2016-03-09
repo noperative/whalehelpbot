@@ -9,8 +9,8 @@ from time import sleep
 r_instance = None
 already_replied = []
 
-#def username_mentions():
-    #build_reply()
+def username_mentions():
+    build_reply()
 
 def scan_post(post):
     print "scanning post: " + post.title

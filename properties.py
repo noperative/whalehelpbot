@@ -1,5 +1,5 @@
 subreddit = 'taigeilove'
-user_agent = 'Python:whalehelpbot:v1.0 (by /u/Noperative)'
+user_agent = 'Python:whalehelper for kancolle subreddit:v1.0 (by /u/Noperative)'
 
 general_words = []
 first_time_words = []

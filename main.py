@@ -29,9 +29,9 @@ def username_mentions():
         print("unread message found")
         for m in mentions:
             if m == u:
-                print("mentioned by: " + m.id + " for " + m.comment.submission.id)
+                print("mentioned by: " + m.id + " for " + m.submission.id)
                 u.mark_as_read()
-                build_comment(m.comment.submission)
+                build_comment(m.submission)
 
 
 def scan_submission(submission):
@@ -63,6 +63,7 @@ def main():
             oauth_instance.refresh(force=True)
             break
         except Exception as e:
+            print (e)
             print("error, retrying in 30 seconds")
             sleep(30)
     print("successful! connecting to subreddit: " + properties.subreddit)

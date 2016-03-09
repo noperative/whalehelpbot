@@ -26,7 +26,7 @@ def username_mentions():
     for u in unreads:
         for m in mentions:
             if m == u:
-               print "mentioned by: " + m.id " for " + m.comment.submission.id
+               print "mentioned by: " + m.id + " for " + m.comment.submission.id
                u.mark_as_read()
                build_comment(m.comment.submission)
 
@@ -37,13 +37,13 @@ def scan_submission(submission):
             build_reply(submission)  
 
 def build_comment(submission):
-    global already_replied
-    if submission.id not in already_replied:
-        already_replied.append(post.id)
+    global already_commented
+    if submission.id not in already_commented:
+        already_commented.append(post.id)
 	with open("commented.txt", "a") as file:
 	   file.write('{0!s}\n'.format(submission.id)
-    	reply = "taigei"
-    	submission.add_comment(reply)
+    	comment = "taigei"
+    	submission.add_comment(comment)
 
 def main():
     global r_instance

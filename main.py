@@ -32,13 +32,12 @@ def username_mentions():
             if m == u:
                 print("mentioned by: " + m.id + " for " + m.submission.id)
                 u.mark_as_read()
-                keywords = parse_comment(m.comment)
-                build_comment(m.submission, keywords)
+                build_comment(m.submission, [])
 
-def parse_comment(comment):
+def parse_submission(text):
     keywords = []
     for attr in replybuilder.iteritems():
-        if attr in comment:
+        if attr in text:
             keywords.insert(attr)
     return keywords
 
@@ -47,7 +46,8 @@ def scan_submission(submission):
     print("scanning submission: " + submission.title + " " + submission.id)
     if '[help]' in submission.title.lower():
         # if any(word in submission.selftext.lower for word in properties.general_words):
-            build_comment(submission, [])
+            keywords = parse_submission(submission.selftext.lower())
+            build_comment(submission, keywords)
 
 
 def build_comment(submission, keywords):

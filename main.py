@@ -5,6 +5,7 @@ import OAuth2Util
 import properties
 import re
 from time import sleep
+from replybuilder import *
 import os
 
 r_instance = None
@@ -31,23 +32,34 @@ def username_mentions():
             if m == u:
                 print("mentioned by: " + m.id + " for " + m.submission.id)
                 u.mark_as_read()
-                build_comment(m.submission)
+                keywords = parse_comment(m.comment)
+                build_comment(m.submission, keywords)
+
+def parse_comment(comment):
+    keywords = []
+    for attr in replybuilder.iteritems():
+        if attr in comment:
+            keywords.insert(attr)
+    return keywords
 
 
 def scan_submission(submission):
     print("scanning submission: " + submission.title + " " + submission.id)
     if '[help]' in submission.title.lower():
         # if any(word in submission.selftext.lower for word in properties.general_words):
-            build_comment(submission)
+            build_comment(submission, [])
 
 
-def build_comment(submission):
+def build_comment(submission, keywords):
     global already_commented
     if submission.id not in already_commented:
         already_commented.append(submission.id)
         with open("commented.txt", "a") as f:
             f.write('{0!s}\n'.format(submission.id))
-        comment = "taigei"
+        comment = base_string
+        for keyword in keywords:
+            comment += getattr(replybuilder, keyword)
+        comment += end_string
         submission.add_comment(comment)
 
 

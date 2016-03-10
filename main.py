@@ -32,7 +32,7 @@ def username_mentions():
             if m == u:
                 print("mentioned by: " + m.id + " for " + m.submission.id)
                 u.mark_as_read()
-                build_comment(m.submission, [])
+                build_comment(m.submission)
 
 def parse_submission(text):
     keywords = []
@@ -50,7 +50,7 @@ def scan_submission(submission):
             build_comment(submission, keywords)
 
 
-def build_comment(submission, keywords):
+def build_comment(submission, keywords=[]):
     global already_commented
     if submission.id not in already_commented:
         already_commented.append(submission.id)

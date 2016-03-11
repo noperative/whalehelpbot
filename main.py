@@ -35,8 +35,8 @@ def username_mentions():
 
 
 def scan_submission(submission):
-    print("scanning submission: " + submission.title + " " + submission.id)
     if '[help]' in submission.title.lower():
+        print("scanning submission: " + submission.title + " " + submission.id)
         # if any(word in submission.selftext.lower for word in properties.general_words):
             build_comment(submission)
 

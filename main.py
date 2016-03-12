@@ -17,7 +17,7 @@ def load_already_commented():
         already_commented_ids = [i for i in f.read().split()]
     # cleaning code that may be used one day
     if len(already_commented_ids) > 10000:
-        already_commented_ids = already_commented_ids[-10000:]
+        already_commented_ids = already_commented_ids[10000:]
         f.seek(0)
         f.writelines(already_commented_ids)
     return already_commented_ids
@@ -32,20 +32,25 @@ def username_mentions():
             if m == u:
                 print("mentioned by: " + m.id + " for " + m.submission.id)
                 u.mark_as_read()
-                build_comment(m.submission)
+                keywords = parse_submission(m.body.lower())
+                build_comment(m.submission, keywords)
+
 
 def parse_submission(text):
     keywords = []
-    for attr in replybuilder.iteritems():
-        if attr in text:
-            keywords.insert(attr)
+    if 'NoperativeBot' in text:
+        for keyword in replybuilder:
+            if keyword in text:
+                keywords.append(keyword)
+    else:
+
     return keywords
 
 
 def scan_submission(submission):
     if '[help]' in submission.title.lower():
         print("scanning submission: " + submission.title + " " + submission.id)
-        # if any(word in submission.selftext.lower for word in properties.general_words):
+        if any(word in submission.selftext.lower for word in properties.general_words):
             keywords = parse_submission(submission.selftext.lower())
             build_comment(submission, keywords)
 
@@ -56,10 +61,10 @@ def build_comment(submission, keywords=[]):
         already_commented.append(submission.id)
         with open("commented.txt", "a") as f:
             f.write('{0!s}\n'.format(submission.id))
-        comment = base_string
+        comment = replybuilder['base']
         for keyword in keywords:
-            comment += getattr(replybuilder, keyword)
-        comment += end_string
+            comment += replybuilder[keyword]
+        comment += replybuilder['end']
         submission.add_comment(comment)
 
 

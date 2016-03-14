@@ -6,11 +6,12 @@ I'll do my best!
 -----
 
 """,
-    'register': """"
+    'register': """
 It looks like you want some help in registering for the game.
-Kancolle is a region-locked game so you will need to fiddle around with your settings
-or use some safe, third-party programs to streamline the process.
-[Check the reddit wiki page on the process](https://www.reddit.com/r/kancolle/wiki/gettingstarted)
+Don't worry, Kancolle is very easy to get into once you've properly set yourself up!
+[Check the reddit wiki page for a quick tutorial.](https://www.reddit.com/r/kancolle/wiki/gettingstarted)
+
+Have fun!
 
 """,
     'viewer': """
@@ -33,6 +34,11 @@ If you are having trouble with managing resources, that's normal!
 Early on it's very busy for a new player, so you will be using a lot of resources.
 Just focus on doing all your quests and sending out the right expedition fleets!
 Learn more [here](https://www.reddit.com/r/kancolle/wiki/beginner#wiki_gaining_resources)
+
+""",
+    'beginner_dev/cons': """
+Some information on the combat mechanics in the game can be found [here](https://www.reddit.com/r/kancolle/wiki/beginner#wiki_sorties_and_combat).
+The full combat page can be found on the main wiki [here](http://kancolle.wikia.com/wiki/Combat).
 
 """,
     'end': """

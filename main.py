@@ -38,12 +38,15 @@ def username_mentions():
 
 def parse_submission(text):
     keywords = []
-    if 'NoperativeBot' in text:
+    if '/u/noperativebot' in text:
+        print("Username mentioned found")
         for keyword in replybuilder:
             if keyword in text:
+                print("found keyword")
                 keywords.append(keyword)
     else:
-
+        pass
+    print(keywords)
     return keywords
 
 
@@ -57,6 +60,8 @@ def scan_submission(submission):
 
 def build_comment(submission, keywords=[]):
     global already_commented
+    if not keywords:
+        return
     if submission.id not in already_commented:
         already_commented.append(submission.id)
         with open("commented.txt", "a") as f:

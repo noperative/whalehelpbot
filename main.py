@@ -32,11 +32,11 @@ def username_mentions():
             if m == u:
                 print("mentioned by: " + m.id + " for " + m.submission.id)
                 u.mark_as_read()
-                keywords = parse_submission(m.body.lower())
+                keywords = parse_text(m.body.lower())
                 build_comment(m.submission, keywords)
 
 
-def parse_submission(text):
+def parse_text(text):
     keywords = []
     if '/u/noperativebot' in text:
         print("Username mentioned found")
@@ -54,7 +54,7 @@ def scan_submission(submission):
     if '[help]' in submission.title.lower():
         print("scanning submission: " + submission.title + " " + submission.id)
         if any(word in submission.selftext.lower for word in properties.general_words):
-            keywords = parse_submission(submission.selftext.lower())
+            keywords = parse_text(submission.selftext.lower())
             build_comment(submission, keywords)
 
 
@@ -66,10 +66,10 @@ def build_comment(submission, keywords=[]):
         already_commented.append(submission.id)
         with open("commented.txt", "a") as f:
             f.write('{0!s}\n'.format(submission.id))
-        comment = replybuilder['base']
+        comment = replybuilder['beginning_string']
         for keyword in keywords:
             comment += replybuilder[keyword]
-        comment += replybuilder['end']
+        comment += replybuilder['end_string']
         submission.add_comment(comment)
 
 

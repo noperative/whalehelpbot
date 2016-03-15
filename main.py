@@ -7,7 +7,7 @@ import re
 from time import sleep
 from replybuilder import *
 import os
-
+from matrixbuilder import *
 r_instance = None
 already_commented = []
 
@@ -45,7 +45,7 @@ def parse_text(text):
                 print("found keyword")
                 keywords.append(keyword)
     else:
-        pass
+        pass  # matrix calculation goes here
     print(keywords)
     return keywords
 
